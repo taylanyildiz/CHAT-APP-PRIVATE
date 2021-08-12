@@ -1,8 +1,5 @@
-import 'dart:developer';
-
-import 'package:chat_app_ui/controllers/controllers.dart';
-import 'package:chat_app_ui/services/services.dart';
-
+import '/controllers/controllers.dart';
+import '/services/services.dart';
 import '/models/model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

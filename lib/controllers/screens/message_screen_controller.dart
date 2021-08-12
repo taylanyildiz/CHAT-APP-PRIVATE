@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chat_app_ui/models/model.dart';
 
 import '/services/services.dart';
@@ -25,6 +27,7 @@ class MessageScreenController extends GetxController {
     List<Messages> userMessage = [];
     messageController.allMessages.forEach((element) {
       if (element.sender!.phone == user.phone) {
+        log('message');
         userMessage.add(element);
       }
     });

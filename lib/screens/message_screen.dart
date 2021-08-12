@@ -1,6 +1,6 @@
-import 'package:chat_app_ui/models/model.dart';
-import 'package:chat_app_ui/routers/routers.dart';
-import 'package:chat_app_ui/widgets/widgets.dart';
+import '/models/model.dart';
+import '/routers/routers.dart';
+import '/widgets/widgets.dart';
 import '/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,28 +23,30 @@ class MessageScreen extends StatelessWidget {
   }
 
   Widget _buildListMessages() {
-    return GetBuilder<UserController>(builder: (userController) {
-      return GetBuilder<MessageListController>(
-        builder: (listController) => Expanded(
-          child: Scrollbar(
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              controller: listController.scrollController,
-              itemCount: 4 + userController.other.length,
-              addSemanticIndexes: false,
-              addRepaintBoundaries: true,
-              itemBuilder: (context, index) {
-                if (index == 0) return _buildSearcBox(listController);
-                if (index == 1) return _buildGroupButton();
-                if (index == 2) return _buildDivider();
-                if (index == 3) return _buildArchiveButton();
-                return _buildProfileMessageBox(userController, index);
-              },
+    return GetBuilder<UserController>(
+      builder: (userController) {
+        return GetBuilder<MessageListController>(
+          builder: (listController) => Expanded(
+            child: Scrollbar(
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                controller: listController.scrollController,
+                itemCount: 4 + userController.other.length,
+                addSemanticIndexes: false,
+                addRepaintBoundaries: true,
+                itemBuilder: (context, index) {
+                  if (index == 0) return _buildSearcBox(listController);
+                  if (index == 1) return _buildGroupButton();
+                  if (index == 2) return _buildDivider();
+                  if (index == 3) return _buildArchiveButton();
+                  return _buildProfileMessageBox(userController, index);
+                },
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   Widget _buildProfileMessageBox(UserController userController, int index) {

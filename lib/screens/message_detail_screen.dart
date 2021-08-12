@@ -1,5 +1,5 @@
-import 'package:chat_app_ui/constants/constants.dart';
-import 'package:chat_app_ui/controllers/controllers.dart';
+import '/constants/constants.dart';
+import '/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,27 +33,29 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
   }
 
   Widget _buildMessageList() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: controller.messages.length,
-        itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.only(
-              top: 5.0,
-              bottom: 5.0,
-            ),
-            decoration: BoxDecoration(
-              color: CustomColors.selectionColor,
-            ),
-            child: Text(
-              controller.messages[index].msg ?? '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17.0,
+    return GetBuilder<MessageDetailController>(
+      builder: (_) => Expanded(
+        child: ListView.builder(
+          itemCount: controller.messages.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.only(
+                top: 5.0,
+                bottom: 5.0,
               ),
-            ),
-          );
-        },
+              decoration: BoxDecoration(
+                color: CustomColors.selectionColor,
+              ),
+              child: Text(
+                controller.messages[index].msg ?? '',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
