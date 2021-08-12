@@ -5,6 +5,19 @@ import 'package:get/get.dart';
 class MessageController extends GetxController {
   late List<Messages> allMessages = [];
 
+/*
+  {
+    "12938":
+    [
+      msg1,
+      msg2,
+      msg3
+    ],
+  }
+*/
+
+  Map messages = {};
+
   final userController = Get.find<UserController>();
 
   void addMessage(Messages messages) {
