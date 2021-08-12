@@ -6,7 +6,6 @@ class SplashBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(SecureDbService());
-    Get.put(DataBaseService());
     Get.put(UserController());
     Get.put(MessageController());
     Get.put(SocketService());

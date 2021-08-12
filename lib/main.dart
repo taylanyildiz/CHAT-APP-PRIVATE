@@ -1,9 +1,6 @@
 import 'dart:developer';
-
-import 'package:chat_app_ui/services/restful_service.dart';
-
+import '/services/restful_service.dart';
 import '/bindings/bindings.dart';
-import 'package:get_storage/get_storage.dart';
 import '/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +10,6 @@ import 'routers/pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
   runApp(App());
 }
 

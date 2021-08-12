@@ -1,3 +1,4 @@
+import 'package:chat_app_ui/models/model.dart';
 import 'package:chat_app_ui/routers/routers.dart';
 import 'package:chat_app_ui/widgets/widgets.dart';
 import '/controllers/controllers.dart';
@@ -47,15 +48,13 @@ class MessageScreen extends StatelessWidget {
   }
 
   Widget _buildProfileMessageBox(UserController userController, int index) {
-    return GetBuilder<MessageScreenController>(
-      builder: (messageScreenController) => MessageProfile(
-        user: userController.other[index - 4],
-        onPress: (user) => Get.toNamed(
-          Routers.MSG_DETAIL,
-          arguments: user,
-        ),
-        lastMessage: '',
+    return MessageProfile(
+      user: Users(),
+      onPress: (user) => Get.toNamed(
+        Routers.MSG_DETAIL,
+        arguments: user,
       ),
+      lastMessage: '',
     );
   }
 

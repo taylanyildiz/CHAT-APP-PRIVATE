@@ -7,8 +7,11 @@ class Users {
     this.phone,
     this.password,
     this.profileImage,
-    this.lastSeen,
     this.isOnline,
+    this.isDeleted,
+    this.lastSeen,
+    this.updatedAt,
+    this.createdAt,
   });
 
   int? id;
@@ -16,8 +19,11 @@ class Users {
   String? phone;
   String? password;
   Uint8List? profileImage;
-  DateTime? lastSeen;
   bool? isOnline;
+  bool? isDeleted;
+  DateTime? lastSeen;
+  DateTime? updatedAt;
+  DateTime? createdAt;
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
@@ -27,6 +33,10 @@ class Users {
       password: json['user_password'],
       profileImage: json['user_image'],
       isOnline: json['isOnline'] == 1,
+      isDeleted: json['isDeleted'] == 1,
+      // lastSeen: Utils.fromTimestamp(json['last_seen']).toDate(),
+      // updatedAt: Utils.fromTimestamp(json['updated_at']).toDate(),
+      // createdAt: Utils.fromTimestamp(json['created_at']).toDate(),
     );
   }
 
@@ -36,6 +46,9 @@ class Users {
         'user_phone': phone,
         'user_password': password,
         'isOnline': isOnline,
+        // 'last_seen': lastSeen,
+        // 'updated_at': updatedAt,
+        // 'created_at': createdAt,
       };
 
   @override

@@ -33,29 +33,27 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
   }
 
   Widget _buildMessageList() {
-    return GetBuilder<MessageDetailController>(
-      builder: (_) => Expanded(
-        child: ListView.builder(
-          itemCount: controller.messages.length,
-          itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.only(
-                top: 5.0,
-                bottom: 5.0,
+    return Expanded(
+      child: ListView.builder(
+        itemCount: controller.messages.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: EdgeInsets.only(
+              top: 5.0,
+              bottom: 5.0,
+            ),
+            decoration: BoxDecoration(
+              color: CustomColors.selectionColor,
+            ),
+            child: Text(
+              controller.messages[index].msg ?? '',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.0,
               ),
-              decoration: BoxDecoration(
-                color: CustomColors.selectionColor,
-              ),
-              child: Text(
-                controller.messages[index].msg ?? '',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                ),
-              ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

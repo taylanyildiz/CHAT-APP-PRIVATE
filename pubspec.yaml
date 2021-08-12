@@ -15,8 +15,6 @@ dependencies:
   # state management
   get: ^4.3.4
 
-  # local db service
-  get_storage: ^2.0.3
   # local db secure
   flutter_secure_storage: ^4.2.1
 
@@ -25,6 +23,9 @@ dependencies:
 
   # native splash
   flutter_native_splash: ^1.2.1
+
+  # date setting
+  intl: ^0.17.0
 
 
 flutter_native_splash:

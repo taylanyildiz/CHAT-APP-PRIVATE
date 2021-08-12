@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:chat_app_ui/controllers/controllers.dart';
 import 'package:chat_app_ui/routers/routers.dart';
 import '/constants/constants.dart';
@@ -33,12 +32,15 @@ class RestfulService extends GetConnect {
         final user = Users.fromJson(response.body['user'][0]);
         final token = response.body['token'];
         socketConnection(token, user);
+      } else {
+        secureStorage.removeCurrentUser();
       }
     } else if (response.statusCode == 400) {
       Get.back();
       secureStorage.removeCurrentUser();
       Utils.showSnacBar('Dont Create Account', response.body['message']);
-      Get.back();
+    } else {
+      secureStorage.removeCurrentUser();
     }
   }
 
@@ -87,6 +89,8 @@ class RestfulService extends GetConnect {
       secureStorage.removeCurrentUser();
       Utils.showSnacBar('Account Error', 'Empty User ');
       Get.toNamed(Routers.LOGIN);
+    } else {
+      secureStorage.removeCurrentUser();
     }
   }
 

@@ -19,7 +19,7 @@ class SecureDbService extends GetxController {
   }
 
   void updateCurrentUser(Users user) async {
-    String currentUser = json.encode(user.toJson());
+    final currentUser = json.encode(user.toJson());
     await _storage.write(
       key: 'currentUser',
       value: currentUser,
@@ -29,8 +29,7 @@ class SecureDbService extends GetxController {
 
   void getCurrentUser() async {
     final user = await _storage.read(key: 'currentUser');
-    if (user != null)
-      currentUser = Users.fromJson(json.decode(user.toString()));
+    if (user != null) currentUser = Users.fromJson(json.decode(user));
     update();
   }
 

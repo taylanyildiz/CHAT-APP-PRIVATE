@@ -9,9 +9,9 @@ class MessageProfile extends StatelessWidget {
     required this.lastMessage,
   }) : super(key: key);
 
-  final Users user;
+  final Users? user;
   final String lastMessage;
-  final Function(Users) onPress;
+  final Function(Users?) onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class MessageProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            user.name!,
+            user?.name ?? '',
             style: TextStyle(
               color: Colors.white,
               fontSize: 17.0,
@@ -129,7 +129,7 @@ class MessageProfile extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          user.name!.characters.first.toUpperCase(),
+          user?.name?.characters.first.toUpperCase() ?? '',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
