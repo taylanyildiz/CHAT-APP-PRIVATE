@@ -9,11 +9,12 @@ export 'screens/call_screen_controller.dart';
 export 'screens/camera_screen_controller.dart';
 export 'screens/setting_screen_controller.dart';
 export 'screens/add_screen_controller.dart';
-// detai
+// detail
 export 'screens/message_detail_controller.dart';
 
 // widget
 export 'widgets/message_list_controller.dart';
+export 'widgets/message_profile_controller.dart';
 
 // global
 export 'global/message_controller.dart';

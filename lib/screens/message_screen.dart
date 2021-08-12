@@ -48,13 +48,18 @@ class MessageScreen extends StatelessWidget {
   }
 
   Widget _buildProfileMessageBox(UserController userController, int index) {
-    return MessageProfile(
-      user: Users(),
-      onPress: (user) => Get.toNamed(
-        Routers.MSG_DETAIL,
-        arguments: user,
+    return GetBuilder<MessageScreenController>(
+      builder: (messageScreenController) => MessageProfile(
+        user: userController.other[index - 4],
+        onPress: (user) => Get.toNamed(
+          Routers.MSG_DETAIL,
+          arguments: user,
+        ),
+        lastMessage: messageScreenController.getLastMessage(
+              userController.other[index - 4],
+            ) ??
+            '',
       ),
-      lastMessage: '',
     );
   }
 
