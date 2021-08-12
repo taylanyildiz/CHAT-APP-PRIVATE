@@ -1,5 +1,5 @@
 import 'dart:developer';
-import '/services/restful_service.dart';
+import '/services/services.dart';
 import '/bindings/bindings.dart';
 import '/routers/routers.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +44,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     }
     if (state == AppLifecycleState.paused) {
       // background app
+      // if platform is ios removed app build here
       log('paused');
     }
     if (state == AppLifecycleState.resumed) {

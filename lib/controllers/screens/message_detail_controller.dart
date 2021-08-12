@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '/controllers/controllers.dart';
 import '/services/services.dart';
 import '/models/model.dart';
@@ -21,6 +23,7 @@ class MessageDetailController extends GetxController {
   void onInit() {
     textMsgController = TextEditingController();
     user = Get.arguments!;
+    update();
     super.onInit();
   }
 
@@ -36,11 +39,6 @@ class MessageDetailController extends GetxController {
       );
       socketService.sendMessage(message);
     }
-    update();
-  }
-
-  void getMessage(Messages msg) {
-    messages.add(msg);
     update();
   }
 }
