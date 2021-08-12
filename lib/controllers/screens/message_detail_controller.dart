@@ -1,3 +1,8 @@
+import 'dart:developer';
+
+import 'package:chat_app_ui/controllers/controllers.dart';
+import 'package:chat_app_ui/services/services.dart';
+
 import '/models/model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -12,6 +17,9 @@ class MessageDetailController extends GetxController {
 
   final List<Messages> messages = [];
 
+  final socketService = Get.find<SocketService>();
+  final userConroller = Get.find<UserController>();
+
   @override
   void onInit() {
     textMsgController = TextEditingController();
@@ -21,13 +29,21 @@ class MessageDetailController extends GetxController {
 
   void sendMessage() {
     msg = textMsgController.text;
+    if (msg.isNotEmpty) {
+      final message = Messages(
+        sender: userConroller.currentUser,
+        receiver: user,
+        msg: msg,
+        createdAt: DateTime.now().toString(),
+        isRead: false,
+      );
+      socketService.sendMessage(message);
+    }
     update();
   }
 
   void getMessage(Messages msg) {
-    if (msg.sender!.phone == user.phone) {
-      messages.add(msg);
-    }
+    messages.add(msg);
     update();
   }
 }

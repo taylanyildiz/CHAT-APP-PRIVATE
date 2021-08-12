@@ -80,7 +80,6 @@ class SocketService extends GetxService {
 
   void listenMessage(data) {
     final message = Messages.fromJson(data);
-    log(message.sender!.name!);
 
     messageController.addMessage(message);
     if (Get.isRegistered<MessageDetailController>()) {
