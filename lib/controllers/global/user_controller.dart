@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '/services/services.dart';
 import '/models/model.dart';
 import 'package:get/get.dart';
@@ -76,10 +78,11 @@ class UserController extends GetxController {
     }
   }
 
-  void setTypingStatus(Users user, bool status) {
+  void setTypingStatus(sender, status) {
     // typing change
-    int index = other.indexWhere((element) => user.phone == element.phone);
+    int index = other.indexWhere((element) => sender == element.phone);
     if (index != -1) {
+      log(status.toString());
       other[index].isTyping = status;
     }
     update();

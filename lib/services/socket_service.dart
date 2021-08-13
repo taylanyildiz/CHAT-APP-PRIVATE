@@ -64,10 +64,9 @@ class SocketService extends GetxService {
       });
 
       socket.on('typing', (data) {
-        log('message');
-        final user = Users.fromJson(data.user);
-        final status = data.status;
-        userController.setTypingStatus(user, status);
+        final who = data['sender_phone'];
+        final status = data['status'];
+        userController.setTypingStatus(who, status);
       });
     });
   }
@@ -90,10 +89,11 @@ class SocketService extends GetxService {
     userController.userMessages(messages);
   }
 
-  void sendTyping(Users to, bool status) {
+  void sendTyping(String who, String from, bool status) {
     // typing send
     socket.emit('typing', {
-      'user': to.toJson(),
+      'sender_phone': who,
+      'receiver_phone': from,
       'status': status,
     });
   }

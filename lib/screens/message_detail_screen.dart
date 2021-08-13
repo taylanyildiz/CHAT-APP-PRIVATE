@@ -53,7 +53,7 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
               children: [
                 Text(controller.user.name!),
                 Text(
-                  'online',
+                  controller.user.isTyping ? 'typing..' : 'online',
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 13.0,

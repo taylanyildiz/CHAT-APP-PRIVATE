@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '/controllers/controllers.dart';
 import '/services/services.dart';
 import '/models/model.dart';
@@ -10,6 +12,9 @@ class MessageDetailController extends GetxController {
 
   /// user index
   late int userIndex;
+
+  // typing timer
+  Timer? timer;
 
   // messages
   late TextEditingController textMsgController;
@@ -46,7 +51,7 @@ class MessageDetailController extends GetxController {
 
   void onChanged(String? input) {
     // typing.
-    socketService.sendTyping(user, true);
-    socketService.sendTyping(user, false);
+    socketService.sendTyping(
+        user.phone!, userConroller.currentUser.phone!, true);
   }
 }
