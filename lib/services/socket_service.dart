@@ -61,9 +61,16 @@ class SocketService extends GetxService {
         newUserAdded(newUser);
       });
 
+      // which user contact to sender.
+      socket.on('listenFrom', (sender) {
+        log('sdf');
+        socket.emit('newRoom', sender);
+      });
+
       socket.on('message', (data) {
-        // sender - receiver - msg - isRead - createAt
-        listenMessage(data);
+        // listen messages
+        final message = Messages.fromJson(data);
+        log(message.msg!);
       });
     });
   }
@@ -80,6 +87,7 @@ class SocketService extends GetxService {
 
   void listenMessage(data) {
     final message = Messages.fromJson(data);
+    log(message.sender!.name! + ' : ' + message.sender!.phone!);
     messageController.addMessage(message);
   }
 }

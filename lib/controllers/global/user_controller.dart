@@ -45,7 +45,6 @@ class UserController extends GetxController {
         other[index] = user;
       }
     }
-
     update();
   }
 }

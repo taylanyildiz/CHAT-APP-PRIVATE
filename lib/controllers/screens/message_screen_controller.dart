@@ -22,15 +22,4 @@ class MessageScreenController extends GetxController {
     Get.put(MessageListController());
     super.onInit();
   }
-
-  String? getLastMessage(Users user) {
-    List<Messages> userMessage = [];
-    messageController.allMessages.forEach((element) {
-      if (element.sender!.phone == user.phone) {
-        log('message');
-        userMessage.add(element);
-      }
-    });
-    if (userMessage.isNotEmpty) return userMessage.last.msg;
-  }
 }

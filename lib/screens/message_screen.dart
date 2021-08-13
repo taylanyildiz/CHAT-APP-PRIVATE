@@ -57,10 +57,7 @@ class MessageScreen extends StatelessWidget {
           Routers.MSG_DETAIL,
           arguments: user,
         ),
-        lastMessage: messageScreenController.getLastMessage(
-              userController.other[index - 4],
-            ) ??
-            '',
+        lastMessage: '',
       ),
     );
   }

@@ -23,6 +23,7 @@ class MessageDetailController extends GetxController {
   void onInit() {
     textMsgController = TextEditingController();
     user = Get.arguments!;
+    log(user.phone!);
     update();
     super.onInit();
   }

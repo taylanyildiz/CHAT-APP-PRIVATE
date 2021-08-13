@@ -73,7 +73,7 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
       builder: (messageController) {
         return Expanded(
           child: ListView.builder(
-            itemCount: 0,
+            itemCount: messageController.allMessages.length,
             reverse: true,
             itemBuilder: (context, index) {
               return Container(
@@ -85,7 +85,7 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
                   color: CustomColors.selectionColor,
                 ),
                 child: Text(
-                  '',
+                  messageController.allMessages[index].msg!,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17.0,
@@ -147,7 +147,7 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
     );
   }
 
-  _buildSenButton() {
+  Widget _buildSenButton() {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
