@@ -82,7 +82,6 @@ class UserController extends GetxController {
     // typing change
     int index = other.indexWhere((element) => sender == element.phone);
     if (index != -1) {
-      log(status.toString());
       other[index].isTyping = status;
     }
     update();

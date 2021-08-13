@@ -50,8 +50,22 @@ class MessageDetailController extends GetxController {
   }
 
   void onChanged(String? input) {
+    if (timer != null) {
+      timer!.cancel();
+    }
+
     // typing.
     socketService.sendTyping(
-        user.phone!, userConroller.currentUser.phone!, true);
+      userConroller.currentUser.phone!,
+      user.phone!,
+      true,
+    );
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      socketService.sendTyping(
+        userConroller.currentUser.phone!,
+        user.phone!,
+        false,
+      );
+    });
   }
 }

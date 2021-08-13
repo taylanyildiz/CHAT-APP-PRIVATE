@@ -48,18 +48,20 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
               )),
             ),
             SizedBox(width: 20.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(controller.user.name!),
-                Text(
-                  controller.user.isTyping ? 'typing..' : 'online',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 13.0,
+            GetBuilder<UserController>(
+              builder: (_) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(controller.user.name!),
+                  Text(
+                    controller.user.isTyping ? 'typing..' : 'online',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 13.0,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
