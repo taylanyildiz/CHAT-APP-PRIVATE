@@ -75,4 +75,13 @@ class UserController extends GetxController {
       return false;
     }
   }
+
+  void setTypingStatus(Users user, bool status) {
+    // typing change
+    int index = other.indexWhere((element) => user.phone == element.phone);
+    if (index != -1) {
+      other[index].isTyping = status;
+    }
+    update();
+  }
 }

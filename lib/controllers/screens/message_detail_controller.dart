@@ -22,11 +22,7 @@ class MessageDetailController extends GetxController {
 
   @override
   void onInit() {
-    textMsgController = TextEditingController()
-      ..addListener(() {
-        // typing.
-        socketService.sendTyping(user);
-      });
+    textMsgController = TextEditingController();
     user = Get.arguments['user'];
     userIndex = Get.arguments['userIndex'];
     super.onInit();
@@ -46,5 +42,11 @@ class MessageDetailController extends GetxController {
       socketService.sendMessage(message);
     }
     update();
+  }
+
+  void onChanged(String? input) {
+    // typing.
+    socketService.sendTyping(user, true);
+    socketService.sendTyping(user, false);
   }
 }

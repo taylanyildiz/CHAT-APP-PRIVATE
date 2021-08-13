@@ -48,7 +48,19 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
               )),
             ),
             SizedBox(width: 20.0),
-            Text(controller.user.name!),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(controller.user.name!),
+                Text(
+                  'online',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 13.0,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -113,6 +125,7 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
         ),
         child: TextField(
           controller: controller.textMsgController,
+          onChanged: controller.onChanged,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

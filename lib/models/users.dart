@@ -27,6 +27,7 @@ class Users {
   DateTime? updatedAt;
   DateTime? createdAt;
   List<Messages> messages = [];
+  bool isTyping = false;
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
@@ -49,6 +50,7 @@ class Users {
         'user_phone': phone,
         'user_password': password,
         'isOnline': isOnline,
+        'isTyping': isTyping,
         // 'last_seen': lastSeen,
         // 'updated_at': updatedAt,
         // 'created_at': createdAt,
