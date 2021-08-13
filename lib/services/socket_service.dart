@@ -24,11 +24,8 @@ class SocketService extends GetxService {
   void connectSocket(token, user) {
     socket = IO.io(
       SocketContant.BASE,
-      IO.OptionBuilder()
-          .setTransports(['websocket'])
-          .disableAutoConnect()
-          .setExtraHeaders({'x-access-token': token})
-          .build(),
+      IO.OptionBuilder().setTransports(['websocket']).setExtraHeaders(
+          {'x-access-token': token}).build(),
     );
     // connect socket
     socket.connect();
@@ -53,24 +50,18 @@ class SocketService extends GetxService {
       });
 
       // current user connected.
-      socket.emit('userConnect', currentUser);
+      socket.emit('user connected', currentUser);
 
-      socket.on('newUserConnected', (data) {
+      socket.on('user connected', (data) {
         // new user added listen
         final newUser = Users.fromJson(data);
         newUserAdded(newUser);
       });
 
-      // which user contact to sender.
-      socket.on('listenFrom', (sender) {
-        log('sdf');
-        socket.emit('newRoom', sender);
-      });
-
-      socket.on('message', (data) {
-        // listen messages
+      socket.on('private message', (data) {
+        // listen message
         final message = Messages.fromJson(data);
-        log(message.msg!);
+        log('receive message : ' + message.msg!);
       });
     });
   }
@@ -82,12 +73,7 @@ class SocketService extends GetxService {
 
   // send message
   void sendMessage(Messages message) {
-    socket.emit('message', message.toJson());
-  }
-
-  void listenMessage(data) {
-    final message = Messages.fromJson(data);
-    log(message.sender!.name! + ' : ' + message.sender!.phone!);
-    messageController.addMessage(message);
+    log('send message : ' + message.msg!);
+    socket.emit('private message', message.toJson());
   }
 }
