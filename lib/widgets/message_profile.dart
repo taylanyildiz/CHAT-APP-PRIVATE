@@ -6,12 +6,12 @@ class MessageProfile extends StatelessWidget {
     Key? key,
     required this.onPress,
     required this.user,
-    required this.lastMessage,
+    this.isMe = false,
   }) : super(key: key);
 
   final Users? user;
-  final String lastMessage;
   final Function(Users?) onPress;
+  final bool isMe;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,14 @@ class MessageProfile extends StatelessWidget {
       onTap: () => onPress.call(user),
       child: Container(
         margin: EdgeInsets.only(top: 5.0),
-        height: 65.0,
+        height: 70.0,
         padding: EdgeInsets.symmetric(horizontal: 15.0),
         decoration: BoxDecoration(color: Colors.transparent),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildCircleAvatar(),
-            SizedBox(width: 10.0),
+            SizedBox(width: 20.0),
             Expanded(
               child: Container(
                 child: Column(
@@ -37,7 +37,7 @@ class MessageProfile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           _buildNameMessage(),
-                          _buildDateTime(),
+                          // _buildDateTime(),
                         ],
                       ),
                     ),
@@ -59,35 +59,6 @@ class MessageProfile extends StatelessWidget {
     );
   }
 
-  Column _buildDateTime() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          '16:08',
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
-          ),
-          padding: EdgeInsets.all(5.0),
-          child: Text(
-            '1',
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
   Expanded _buildNameMessage() {
     return Expanded(
       child: Column(
@@ -103,15 +74,38 @@ class MessageProfile extends StatelessWidget {
           ),
           SizedBox(height: 3.0),
           Expanded(
-            child: Text(
-              lastMessage,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w600,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: isMe || user!.messages.isEmpty
+                ? Text(
+                    user!.messages.isNotEmpty ? user!.messages.last.msg! : '',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  )
+                : Row(
+                    children: [
+                      Icon(
+                        Icons.done_all,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 5.0),
+                      Expanded(
+                        child: Text(
+                          user!.messages.isNotEmpty
+                              ? user!.messages.last.msg ?? ''
+                              : '',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
           ),
         ],
       ),
@@ -120,8 +114,8 @@ class MessageProfile extends StatelessWidget {
 
   Container _buildCircleAvatar() {
     return Container(
-      height: 45.0,
-      width: 45.0,
+      height: 55.0,
+      width: 55.0,
       decoration: BoxDecoration(
         color: Colors.grey.shade700,
         border: Border.all(width: 1.0, color: Colors.white),
@@ -129,7 +123,7 @@ class MessageProfile extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          user?.name?.characters.first.toUpperCase() ?? '',
+          user!.name!.characters.first,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,

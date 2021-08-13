@@ -60,7 +60,7 @@ class MessageScreen extends StatelessWidget {
             'userIndex': (index - 4),
           },
         ),
-        lastMessage: '',
+        isMe: userController.lastIsMe(index - 4),
       ),
     );
   }

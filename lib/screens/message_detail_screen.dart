@@ -1,6 +1,5 @@
 import 'package:chat_app_ui/widgets/widgets.dart';
 
-import '/constants/constants.dart';
 import '/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +73,6 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
 
   Widget _buildMessageList() {
     final userIndex = controller.userIndex;
-
     return GetBuilder<UserController>(
       builder: (userController) {
         return Expanded(
@@ -90,41 +88,6 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
           ),
         );
       },
-    );
-  }
-
-  Container _buildMessageBox(
-      UserController userController, int index, bool isMe) {
-    return Container(
-      margin: isMe
-          ? EdgeInsets.only(top: 8.0, bottom: 8.0, left: 80.0)
-          : EdgeInsets.only(top: 8.0, bottom: 8.0, right: 80.0),
-      padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
-      decoration: BoxDecoration(
-        color: isMe ? CustomColors.circleColor : CustomColors.optionsLight,
-        borderRadius: isMe
-            ? BorderRadius.only(
-                topLeft: Radius.circular(15.0),
-                bottomLeft: Radius.circular(15.0),
-              )
-            : BorderRadius.only(
-                topRight: Radius.circular(15.0),
-                bottomRight: Radius.circular(15.0),
-              ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              userController.other[controller.userIndex].messages[index].msg!,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17.0,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 

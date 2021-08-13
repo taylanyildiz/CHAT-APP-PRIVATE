@@ -62,6 +62,10 @@ class SocketService extends GetxService {
         log('receive message : ' + message.msg!);
         getMessage(message);
       });
+
+      socket.on('typing', (_) {
+        log('message');
+      });
     });
   }
 
@@ -81,5 +85,10 @@ class SocketService extends GetxService {
     // listen or send message -> socket.
     messageController.addMessage(messages);
     userController.userMessages(messages);
+  }
+
+  void sendTyping(Users to) {
+    // typing send
+    socket.emit('typing', to);
   }
 }

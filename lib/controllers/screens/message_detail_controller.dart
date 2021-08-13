@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '/controllers/controllers.dart';
 import '/services/services.dart';
 import '/models/model.dart';
@@ -24,16 +22,20 @@ class MessageDetailController extends GetxController {
 
   @override
   void onInit() {
-    textMsgController = TextEditingController();
+    textMsgController = TextEditingController()
+      ..addListener(() {
+        // typing.
+        socketService.sendTyping(user);
+      });
     user = Get.arguments['user'];
     userIndex = Get.arguments['userIndex'];
-    log(userIndex.toString());
     super.onInit();
   }
 
   void sendMessage() {
     msg = textMsgController.text;
     if (msg.isNotEmpty) {
+      textMsgController.clear();
       final message = Messages(
         sender: userConroller.currentUser,
         receiver: user,

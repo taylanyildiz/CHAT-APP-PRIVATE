@@ -61,4 +61,18 @@ class UserController extends GetxController {
       return false;
     }
   }
+
+  bool lastIsMe(int userIndex) {
+    if (other[userIndex].messages.isNotEmpty) {
+      int lastIndex = other[userIndex].messages.length;
+      if (other[userIndex].messages[lastIndex - 1].sender!.phone ==
+          currentUser.phone) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }
