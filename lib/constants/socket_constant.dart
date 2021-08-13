@@ -1,5 +1,5 @@
 class SocketContant {
-  static const String URL = 'http://213.238.180.11';
-  static const String PORT = '3050';
+  static const String URL = '<YOUR URL ADRESS FOR SOCKET>';
+  static const String PORT = '<YOUR PORT>>';
   static const String BASE = URL + ':' + PORT;
 }

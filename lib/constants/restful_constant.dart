@@ -2,8 +2,8 @@ class RestfulConstant {
   RestfulConstant._();
 
   static const String LOCAL = 'http://localhost:';
-  static const String HOST = 'http://213.238.180.11:';
-  static const String PORT = '3050';
+  static const String HOST = '<YOUR SERVER HOST ADRESS>>';
+  static const String PORT = '<YOUR PORT ADRESS>';
   static const String API_VERSION = '/api/v1';
   static const String BASE_URL = HOST + PORT + API_VERSION;
   static const String BASE_LOCAL_URL = HOST + PORT + API_VERSION;

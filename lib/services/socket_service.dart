@@ -33,7 +33,7 @@ class SocketService extends GetxService {
       log('connected');
 
       /// TO NAVIGATION SCREEN
-      Get.offNamed(Routers.NAV);
+      Get.toNamed(Routers.NAV);
 
       /// connection emit current user
       final currentUser = user.toJson();
