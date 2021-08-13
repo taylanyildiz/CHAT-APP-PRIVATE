@@ -6,7 +6,7 @@ class UserController extends GetxController {
   /// User user
   late Users currentUser;
 
-  /// Contact user
+  /// Connect user
   List<Users> other = [];
 
   /// Token
@@ -14,11 +14,6 @@ class UserController extends GetxController {
 
   /// Secure Local Database
   final secureStorage = Get.find<SecureDbService>();
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   /// UPDATE USER & TOKEN
   void updateUserToken(Users user, String token) async {
@@ -46,5 +41,24 @@ class UserController extends GetxController {
       }
     }
     update();
+  }
+
+  void userMessages(Messages message) {
+    other.forEach((element) {
+      if (element.phone == message.receiver!.phone ||
+          element.phone == message.sender!.phone) {
+        element.messages.add(message);
+      }
+      update();
+    });
+  }
+
+  bool getMeIs(int userIndex, int messageIndex) {
+    if (other[userIndex].messages[messageIndex].sender!.phone ==
+        currentUser.phone) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

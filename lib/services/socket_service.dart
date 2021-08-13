@@ -27,8 +27,6 @@ class SocketService extends GetxService {
       IO.OptionBuilder().setTransports(['websocket']).setExtraHeaders(
           {'x-access-token': token}).build(),
     );
-    // connect socket
-    socket.connect();
 
     // on listen connect
     socket.onConnect((_) {
@@ -40,8 +38,8 @@ class SocketService extends GetxService {
       /// connection emit current user
       final currentUser = user.toJson();
 
-      // get other users
-      socket.on('getUser', (data) {
+      socket.on('get user', (data) {
+        // get other users
         if (data != null) {
           data.forEach((user) {
             newUserAdded(Users.fromJson(user));
@@ -62,18 +60,26 @@ class SocketService extends GetxService {
         // listen message
         final message = Messages.fromJson(data);
         log('receive message : ' + message.msg!);
+        getMessage(message);
       });
     });
   }
 
+  // add connect user
   void newUserAdded(Users user) {
-    // add connect user
     userController.addUserConnection(user);
   }
 
-  // send message
+  // send message private
   void sendMessage(Messages message) {
     log('send message : ' + message.msg!);
     socket.emit('private message', message.toJson());
+    getMessage(message);
+  }
+
+  void getMessage(Messages messages) {
+    // listen or send message -> socket.
+    messageController.addMessage(messages);
+    userController.userMessages(messages);
   }
 }

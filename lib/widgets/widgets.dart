@@ -6,3 +6,4 @@ export 'circle_app_icon.dart';
 export 'custom_bottom_nav.dart';
 export 'message_profile.dart';
 export 'settings_box.dart';
+export 'message_box.dart';

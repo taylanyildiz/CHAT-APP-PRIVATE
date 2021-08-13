@@ -55,7 +55,10 @@ class MessageScreen extends StatelessWidget {
         user: userController.other[index - 4],
         onPress: (user) => Get.toNamed(
           Routers.MSG_DETAIL,
-          arguments: user,
+          arguments: {
+            'user': user,
+            'userIndex': (index - 4),
+          },
         ),
         lastMessage: '',
       ),

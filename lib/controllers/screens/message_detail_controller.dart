@@ -10,6 +10,9 @@ class MessageDetailController extends GetxController {
   // message user
   late Users user;
 
+  /// user index
+  late int userIndex;
+
   // messages
   late TextEditingController textMsgController;
   late String msg;
@@ -22,9 +25,9 @@ class MessageDetailController extends GetxController {
   @override
   void onInit() {
     textMsgController = TextEditingController();
-    user = Get.arguments!;
-    log(user.phone!);
-    update();
+    user = Get.arguments['user'];
+    userIndex = Get.arguments['userIndex'];
+    log(userIndex.toString());
     super.onInit();
   }
 

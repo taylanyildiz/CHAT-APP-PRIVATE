@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'messages.dart';
+
 class Users {
   Users({
     this.id,
@@ -24,6 +26,7 @@ class Users {
   DateTime? lastSeen;
   DateTime? updatedAt;
   DateTime? createdAt;
+  List<Messages> messages = [];
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(

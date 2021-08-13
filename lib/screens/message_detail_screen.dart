@@ -1,10 +1,14 @@
+import 'package:chat_app_ui/widgets/widgets.dart';
+
 import '/constants/constants.dart';
 import '/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessageDetailScreen extends GetView<MessageDetailController> {
-  MessageDetailScreen({Key? key}) : super(key: key);
+  MessageDetailScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,33 +73,58 @@ class MessageDetailScreen extends GetView<MessageDetailController> {
   }
 
   Widget _buildMessageList() {
-    return GetBuilder<MessageController>(
-      builder: (messageController) {
+    final userIndex = controller.userIndex;
+
+    return GetBuilder<UserController>(
+      builder: (userController) {
         return Expanded(
           child: ListView.builder(
-            itemCount: messageController.allMessages.length,
-            reverse: true,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: EdgeInsets.only(
-                  top: 5.0,
-                  bottom: 5.0,
-                ),
-                decoration: BoxDecoration(
-                  color: CustomColors.selectionColor,
-                ),
-                child: Text(
-                  messageController.allMessages[index].msg!,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17.0,
-                  ),
-                ),
-              );
-            },
+            itemCount:
+                userController.other[controller.userIndex].messages.length,
+            reverse: false,
+            itemBuilder: (context, index) => MessageBox(
+              user: userController.other[userIndex],
+              index: index,
+              isMe: userController.getMeIs(userIndex, index),
+            ),
           ),
         );
       },
+    );
+  }
+
+  Container _buildMessageBox(
+      UserController userController, int index, bool isMe) {
+    return Container(
+      margin: isMe
+          ? EdgeInsets.only(top: 8.0, bottom: 8.0, left: 80.0)
+          : EdgeInsets.only(top: 8.0, bottom: 8.0, right: 80.0),
+      padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+      decoration: BoxDecoration(
+        color: isMe ? CustomColors.circleColor : CustomColors.optionsLight,
+        borderRadius: isMe
+            ? BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                bottomLeft: Radius.circular(15.0),
+              )
+            : BorderRadius.only(
+                topRight: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0),
+              ),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              userController.other[controller.userIndex].messages[index].msg!,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.0,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

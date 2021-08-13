@@ -40,6 +40,8 @@ class RestfulService extends GetConnect {
       secureStorage.removeCurrentUser();
       Utils.showSnacBar('Dont Create Account', response.body['message']);
     } else {
+      Get.back();
+      Utils.showSnacBar('Dont Create Account', 'I do not know');
       secureStorage.removeCurrentUser();
     }
   }

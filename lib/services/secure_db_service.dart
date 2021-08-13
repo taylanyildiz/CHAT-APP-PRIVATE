@@ -9,9 +9,6 @@ class SecureDbService extends GetxController {
   /// Current User saved
   Users? currentUser;
 
-  /// Connection user saved
-  List<Users>? connectionUsers;
-
   @override
   void onInit() {
     getCurrentUser();

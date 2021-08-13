@@ -7,9 +7,9 @@ class SplashBinding extends Bindings {
   void dependencies() {
     Get.put(SecureDbService());
     Get.put(UserController());
+    Get.put(RestfulService());
     Get.put(MessageController());
     Get.put(SocketService());
-    Get.put(RestfulService());
     Get.put(SplashScreenController());
   }
 }
