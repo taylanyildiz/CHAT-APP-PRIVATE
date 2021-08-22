@@ -66,7 +66,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       ),
       locale: Get.locale ?? Locale('en'),
       translations: Localization(),
-      initialRoute: Routers.SPLASH,
+      initialRoute: Routers.NAV,
       initialBinding: SplashBinding(),
       getPages: Pages.pages,
     );
